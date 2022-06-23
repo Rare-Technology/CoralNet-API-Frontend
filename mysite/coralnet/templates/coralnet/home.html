@@ -9,4 +9,9 @@
   <li>Please enter an email address to send the results to.</li>
 </ol>
 
+<form action="/success/" method="post">
+  {% csrf_token %}
+  {{ form }}
+  <input type="submit" value="Submit">
+</form>
 That's it!
