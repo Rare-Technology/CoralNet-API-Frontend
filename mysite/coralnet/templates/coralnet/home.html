@@ -1,17 +1,17 @@
 {% load static %}
 
 <h1>CoralNet Deploy API Web</h1>
-<p>Welcome to the web version of Scott Miller's <a href="https://coralnet.ucsd.edu/blog/automatically-annotating-175000-images-with-the-coralnet-api/">CoralNet API Deployer</a>. This website is meant to abstract the need to create a Dropbox account or to touch any code.</p>
+<p>Welcome to the web version of Scott Miller's <a href="https://coralnet.ucsd.edu/blog/automatically-annotating-175000-images-with-the-coralnet-api/">CoralNet API Deployer</a>. This website is meant to abstract the need to create a Dropbox account or to touch any code. Simply provide the following information:</p>
 
 <ol>
-  <li>Upload images to Dropbox <a href="{{ dbx_link }}" target="_blank">here.</a></li>
-  <li>Enter your model's global id:</li> <span><img src="{% static 'images/classifier_overview.png' %}"></span>
-  <li>Please enter an email address to send the results to.</li>
+  <li>The number of images you will upload. It is important you get this number correct so that we know when your images are done uploading.</li>
+  <li>Your CoralNet model's global id:</li> <span><img src="{% static 'images/classifier_overview.png' %}"></span>
+  <li>An email address to send the results to.</li>
+  <li>The images you want annotated. You will be prompted to upload images to Dropbox after submitting the form below.</li>
 </ol>
 
-<form action="/success/" method="post">
+<form action="/dropbox/" method="post">
   {% csrf_token %}
-  {{ form }}
+  {{ form.as_p }}
   <input type="submit" value="Submit">
 </form>
-That's it!

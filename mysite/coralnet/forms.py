@@ -1,5 +1,6 @@
 from django import forms
 
 class MainForm(forms.Form):
-    global_id = forms.IntegerField()
+    number_of_images = forms.IntegerField()
+    global_ID = forms.IntegerField()
     email = forms.EmailField()

@@ -22,7 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get("SECRET_KEY")
-DBX_ACCESS_TOKEN = os.environ.get("DBX_ACCESS_TOKEN")
+DBX_REFRESH_TOKEN = os.environ.get("DBX_REFRESH_TOKEN")
+DBX_APP_KEY = os.environ.get("DBX_APP_KEY")
+DBX_APP_SECRET = os.environ.get("DBX_APP_SECRET")
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

@@ -10,20 +10,30 @@ def home(request):
         form = MainForm(request.POST)
 
         if form.is_valid():
-            redirect('success')
+            redirect('dropbox')
     else:
-        dbx = dropbox.Dropbox(settings.DBX_ACCESS_TOKEN)
-        tmp_name = tempfile.TemporaryDirectory().name.split('/')[-1]
-        dbx_dir = dbx.file_requests_create(tmp_name, f'/{tmp_name}')
-
         form = MainForm()
 
         ctx = {
-            "dbx_link": dbx_dir.url,
             "form": form
         }
 
     return render(request, 'coralnet/home.html', ctx)
 
-def success(request):
-    return render(request, 'coralnet/success.html', {})
+def dropbox_view(request):
+    dbx = dropbox.Dropbox(
+        oauth2_refresh_token = settings.DBX_REFRESH_TOKEN,
+        app_key = settings.DBX_APP_KEY,
+        app_secret = settings.DBX_APP_SECRET
+    )
+
+    dbx.check_and_refresh_access_token()
+
+    tmp_name = tempfile.TemporaryDirectory().name.split('/')[-1]
+    dbx_dir = dbx.file_requests_create(tmp_name, f'/{tmp_name}')
+
+    ctx = {
+        "dbx_link": dbx_dir.url
+    }
+
+    return render(request, 'coralnet/dropbox.html', ctx)

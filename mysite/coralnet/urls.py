@@ -5,5 +5,5 @@ app_name = 'coralnet'
 
 urlpatterns = [
     path('', views.home, name = 'home'),
-    path('success/', views.success, name = 'success')
+    path('dropbox/', views.dropbox_view, name = 'dropbox')
 ]
